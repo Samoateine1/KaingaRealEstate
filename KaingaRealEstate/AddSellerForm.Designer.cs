@@ -38,7 +38,6 @@ namespace KaingaRealEstate
             this.txtEmailAddress = new System.Windows.Forms.TextBox();
             this.txtPhoneNumber = new System.Windows.Forms.TextBox();
             this.txtLastName = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.lblLastName = new System.Windows.Forms.Label();
             this.lblFirstName = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -128,19 +127,10 @@ namespace KaingaRealEstate
             this.txtLastName.Size = new System.Drawing.Size(255, 32);
             this.txtLastName.TabIndex = 8;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(485, 42);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 24);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "ADD SELLER";
-            // 
             // lblLastName
             // 
             this.lblLastName.AutoSize = true;
-            this.lblLastName.Location = new System.Drawing.Point(84, 100);
+            this.lblLastName.Location = new System.Drawing.Point(94, 100);
             this.lblLastName.Name = "lblLastName";
             this.lblLastName.Size = new System.Drawing.Size(102, 24);
             this.lblLastName.TabIndex = 11;
@@ -246,7 +236,6 @@ namespace KaingaRealEstate
             this.Controls.Add(this.label4);
             this.Controls.Add(this.lblFirstName);
             this.Controls.Add(this.lblLastName);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.txtLastName);
             this.Controls.Add(this.txtPhoneNumber);
             this.Controls.Add(this.txtEmailAddress);
@@ -276,7 +265,6 @@ namespace KaingaRealEstate
         private System.Windows.Forms.TextBox txtEmailAddress;
         private System.Windows.Forms.TextBox txtPhoneNumber;
         private System.Windows.Forms.TextBox txtLastName;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblLastName;
         private System.Windows.Forms.Label lblFirstName;
         private System.Windows.Forms.Label label4;
