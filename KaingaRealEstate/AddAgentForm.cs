@@ -72,7 +72,7 @@ namespace KaingaRealEstate
                 }
                 catch (FormatException)
                 {
-                    MessageBox.Show("Please select a number for Salary or yes / no for Certification", "Error");
+                    MessageBox.Show("Error");
 
                 }
 

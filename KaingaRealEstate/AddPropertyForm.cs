@@ -108,7 +108,7 @@ namespace KaingaRealEstate
         {
             txtStreetAddress.Text = "";
             txtDescription.Text = "";
-            nudPrice.Value = 500000;
+            nudPrice.Text = "";
             cboSuburb.Items.Clear();
             cboCategories.Items.Clear();
             cboSellers.Items.Clear();

@@ -79,7 +79,7 @@ namespace KaingaRealEstate
         }
         public void UpdateAgent()
         {
-            daAgent.Update(dsKainga, "AGENT");
+            
         }
         public void UpdateBuyer()
         {
@@ -156,7 +156,7 @@ namespace KaingaRealEstate
 
         private void daAgent_RowUpdated(object sender, OleDbRowUpdatedEventArgs e)
         {
-            //Include a variable and a command to retrieve
+             //Include a variable and a command to retrieve
             // the identity value from the Access database.
             int newID = 0;
             OleDbCommand idCMD = new OleDbCommand("SELECT @@IDENTITY", ctnKainga);
@@ -179,7 +179,7 @@ namespace KaingaRealEstate
         {
 
         }
-
+        
         private void daOffer_RowUpdated(object sender, OleDbRowUpdatedEventArgs e)
         {
             //Include a variable and a command to retrieve
@@ -190,10 +190,12 @@ namespace KaingaRealEstate
             {
                 //Retrieve the identity value and
                 //store it in the OfferID column.
-                newID = (int)idCMD.ExecuteScalar();
-                e.Row["OfferID"] = newID;
+                //newID = (int)idCMD.ExecuteScalar();
+                //e.Row["OfferID"] = newID;
             }
+            
         }
+        
 
         private void DataController_Load(object sender, EventArgs e)
         {

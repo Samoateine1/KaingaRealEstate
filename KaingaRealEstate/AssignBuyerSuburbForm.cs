@@ -17,7 +17,7 @@ namespace KaingaRealEstate
         private int aSuburbID, aBuyerID;
         private CurrencyManager cmBuyer;
         private CurrencyManager cmSuburbs;
-        
+
 
         public AssignBuyerSuburbForm(DataController dc, BuyerLiaisonClerkMainForm mnu)
         {
@@ -26,7 +26,7 @@ namespace KaingaRealEstate
             frmMenu = mnu;
             frmMenu.Hide();
             cmBuyer = (CurrencyManager)this.BindingContext[DC.dsKainga, "BUYER"];
-          
+
         }
         private void ClearFields()
         {
@@ -52,7 +52,7 @@ namespace KaingaRealEstate
         private void AssignBuyerSuburbForm_Load(object sender, EventArgs e)
         {
             LoadBuyers();
-            LoadSuburbs();
+
         }
 
         private void LoadBuyers()
@@ -69,32 +69,13 @@ namespace KaingaRealEstate
                 cboSuburbs.Items.Add(drSuburb["suburbID"] + (" ") + drSuburb["suburbName"]);
             }
         }
-
-
         private void cboSuburbs_SelectedIndexChanged(object sender, EventArgs e)
         {
             string aRow = cboSuburbs.SelectedItem.ToString();
             string[] subs = aRow.Split(' ');
             aSuburbID = Convert.ToInt32(subs[0]);
-           // cmSuburbs.Position = DC.suburbView.Find(aSuburbID);
-            DataRow drSuburb = DC.dtSuburb.Rows[cmSuburbs.Position];
-            cmBuyer.Position = DC.buyerView.Find(aBuyerID);
-            DataRow drBuyer = DC.dtBuyer.Rows[cmBuyer.Position];
-            txtBuyerID.Text = drBuyer["buyerID"].ToString();
-            txtLastName.Text = drBuyer["lastName"].ToString();
-            txtFirstName.Text = drBuyer["firstName"].ToString();
-            txtCreditStatus.Text = drBuyer["creditStatus"].ToString();
-
-
-            MessageBox.Show("suburbID = " + aSuburbID);
-
-            LoadBuyerAssigned();
-            LoadBuyers();
-
-
-
         }
-        private void LoadBuyerAssigned()
+        private void LoadSuburbsAssigned()
         {
             DataRow drBuyer = DC.dtBuyer.Rows[cmBuyer.Position];
             DataRow[] drBuyerSuburbs = drBuyer.GetChildRows(DC.dtBuyer.ChildRelations["BUYER_BUYERSUBURB"]);
@@ -102,8 +83,8 @@ namespace KaingaRealEstate
             lstSuburbsAssigned.Items.Add("ID\r\tSuburb\r\tImportance\r\n");
             foreach (DataRow drBuyerSuburb in drBuyerSuburbs)
             {
-                DataRow drSuburb = drBuyerSuburb.GetParentRow(DC.dtBuyerCategory.ParentRelations["SUBURB_BUYERSUBURB"]);
-                lstSuburbsAssigned.Items.Add(drSuburb["suburbID"] + "\r\t" + drSuburb["suburbName"]+ "\r\t" + drBuyerSuburb["importance"] + "\r\n");
+                DataRow drSuburb = drBuyerSuburb.GetParentRow(DC.dtBuyerSuburb.ParentRelations["SUBURB_BUYERSUBURB"]);
+                lstSuburbsAssigned.Items.Add(drSuburb["suburbID"] + "\r\t" + drSuburb["suburbName"] + "\r\t" + drBuyerSuburb["importance"] + "\r\n");
             }
         }
         private void cboImportance_SelectedIndexChanged(object sender, EventArgs e)
@@ -114,15 +95,34 @@ namespace KaingaRealEstate
 
         private void btnAssignBuyerSuburb_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            frmMenu.Show();
-            ClearFields();
+            if ((cboImportance.Text == "") || (cboBuyers.Text == "") || (cboSuburbs.Text == ""))
+            {
+                MessageBox.Show("Please fill in all fields correctly", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                try
+                {
+                    DataRow newBuyerSuburb = DC.dtBuyerSuburb.NewRow();
+                    newBuyerSuburb["buyerID"] = aBuyerID;
+                    newBuyerSuburb["categoryID"] = aSuburbID;
+                    newBuyerSuburb["importance"] = cboImportance.Text;
+                    DC.dtBuyerSuburb.Rows.Add(newBuyerSuburb);
+                    DC.UpdateBuyerSuburb();
+                    MessageBox.Show("Suburb assigned to the buyer sucessfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch
+                {
+                    MessageBox.Show("The suburb is already assigned to the buyer.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
-       
+
 
         private void cboBuyers_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lstSuburbsAssigned.Items.Clear();
             string aRow = cboBuyers.SelectedItem.ToString();
             string[] subs = aRow.Split(' ');
             aBuyerID = Convert.ToInt32(subs[0]);
@@ -132,9 +132,8 @@ namespace KaingaRealEstate
             txtLastName.Text = drBuyer["lastName"].ToString();
             txtFirstName.Text = drBuyer["firstName"].ToString();
             txtCreditStatus.Text = drBuyer["creditStatus"].ToString();
-            LoadBuyerAssigned();
             LoadSuburbs();
+            LoadSuburbsAssigned();
         }
-
     }
 }

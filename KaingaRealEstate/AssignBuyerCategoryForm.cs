@@ -73,6 +73,7 @@ namespace KaingaRealEstate
 
         private void cboBuyer_SelectedIndexChanged(object sender, EventArgs e)
         {
+            lstCategoryAssign.Items.Clear();
             string aRow = cboBuyer.SelectedItem.ToString();
             string[] subs = aRow.Split(' ');
             aBuyerID = Convert.ToInt32(subs[0]);
@@ -125,20 +126,20 @@ namespace KaingaRealEstate
             }
         }
 
-        private void LoadCategoriesAssigned()
-        {
-            DataRow drBuyer = DC.dtBuyer.Rows[cmBuyer.Position];
-            DataRow[] drBuyerCategories = drBuyer.GetChildRows(DC.dtBuyer.ChildRelations["BUYER_BUYERCATEGORY"]);
-            var space = new string(' ', 31);
-            lstCategoryAssign.Items.Add("ID\r\tDescription" + space + "Importance\r\n");
-            foreach (DataRow drBuyerCategory in drBuyerCategories)
+            private void LoadCategoriesAssigned()
             {
-                DataRow drCategory = drBuyerCategory.GetParentRow(DC.dtBuyerCategory.ParentRelations["CATEGORY_BUYERCATEGORY"]);
-                string aDescription = drCategory["categoryDescription"].ToString();
-                space = new String(' ', (42 - aDescription.Length));
-                lstCategoryAssign.Items.Add(drCategory["categoryID"] + "\r\t" + aDescription + space + drBuyerCategory["importance"] + "\r\n");
+                DataRow drBuyer = DC.dtBuyer.Rows[cmBuyer.Position];
+                DataRow[] drBuyerCategories = drBuyer.GetChildRows(DC.dtBuyer.ChildRelations["BUYER_BUYERCATEGORY"]);
+                var space = new string(' ', 31);
+                lstCategoryAssign.Items.Add("ID\r\tDescription" + space + "Importance\r\n");
+                foreach (DataRow drBuyerCategory in drBuyerCategories)
+                {
+                    DataRow drCategory = drBuyerCategory.GetParentRow(DC.dtBuyerCategory.ParentRelations["CATEGORY_BUYERCATEGORY"]);
+                    string aDescription = drCategory["categoryDescription"].ToString();
+                    space = new String(' ', (42 - aDescription.Length));
+                    lstCategoryAssign.Items.Add(drCategory["categoryID"] + "\r\t" + aDescription + space + drBuyerCategory["importance"] + "\r\n");
+                }
             }
-        }
     }
 }
 

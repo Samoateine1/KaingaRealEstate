@@ -23,50 +23,8 @@ namespace KaingaRealEstate
             DC = dc;
             frmMenu = mnu;
             frmMenu.Hide();
-            BindControls();
-
-
-        }
-        public void BindControls()
-        {
-            txtBuyerID.DataBindings.Add("Text", DC.dsKainga, "BUYER.buyerID");
-            txtLastName.DataBindings.Add("Text", DC.dsKainga, "BUYER.lastName");
-            txtFirstName.DataBindings.Add("Text", DC.dsKainga, "BUYER.firstName");
-            txtEmailAddress.DataBindings.Add("Text", DC.dsKainga, "BUYER.emailAddress");
-            txtPhoneNumber.DataBindings.Add("Text", DC.dsKainga, "BUYER.phoneNumber");
-
-            txtPropertyID.DataBindings.Add("Text", DC.dsKainga, "PROPERTY.propertyID");
-            txtDescription.DataBindings.Add("Text", DC.dsKainga, "PROPERTY.propertyDescription");
-            txtStreetAddress.DataBindings.Add("Text", DC.dsKainga, "PROPERTY.streetAddress");
-
-            cboBuyers.DataSource = DC.dsKainga;
-            cboBuyers.SelectedItem = "BUYER.buyerID";
-
-            cboProperties.DataSource = DC.dsKainga;
-            cboProperties.SelectedItem = "PROPERTY.propertyID";
-            cmBuyer = (CurrencyManager)this.BindingContext[DC.dsKainga, "buyerID"];
-            cmProperty = (CurrencyManager)this.BindingContext[DC.dsKainga, "propertyID"];
-        }
-
-        private void AddOfferForm_Load(object sender, EventArgs e)
-        {
-            LoadFields();
-        }
-        private void LoadFields()
-        {
-            foreach (DataRow drBuyer in DC.dtBuyer.Rows)
-            {
-                {
-                    cboBuyers.Items.Add(drBuyer["buyerID"] + (" ") + drBuyer["lastName"] + (" ") + drBuyer["firstName"]);
-                }
-            }
-            foreach (DataRow drProperty in DC.dtProperty.Rows)
-            {
-                {
-                    cboProperties.Items.Add(drProperty["propertyID"] + (" ") + drProperty["lastName"] + (" ") + drProperty["firstName"]);
-                }
-
-            }
+            cmBuyer = (CurrencyManager)this.BindingContext[DC.dsKainga, "BUYER"];
+            cmProperty = (CurrencyManager)this.BindingContext[DC.dsKainga, "PROPERTY"];
         }
         private void ClearFields()
         {
@@ -81,20 +39,80 @@ namespace KaingaRealEstate
             txtPropertyID.Text = "";
             txtDescription.Text = "";
             txtStreetAddress.Text = "";
-            nudPrice.Value = 0;
-        }
-        private void cboBuyer_SelectedIndexChanged(object sender, EventArgs e)
-        {
+            nudPrice.Text = "";
             
         }
+        
 
-
-        private void btnAddOffer_Click(object sender, EventArgs e)
+        private void btnReturn_Click(object sender, EventArgs e)
         {
+            this.Hide();
+            frmMenu.Show();
             ClearFields();
         }
+        private void AddOfferForm_Load(object sender, EventArgs e)
+        {
+            LoadFields();
 
-        private void cboBuyers_SelectedIndexChanged(object sender, EventArgs e)
+        }
+        private void LoadFields()
+        {
+            foreach (DataRow drBuyer in DC.dtBuyer.Rows)
+            {
+                {
+                    cboBuyers.Items.Add(drBuyer["buyerID"] + (" ") + drBuyer["lastName"] + (" ") + drBuyer["firstName"]);
+                }
+            }
+            foreach (DataRow drProperty in DC.dtProperty.Rows)
+            {
+                {
+                    cboProperties.Items.Add(drProperty["propertyID"] + (" ") + drProperty["propertyDescription"]);
+                }
+            }
+        }
+        private void btnAddOffer_Click(object sender, EventArgs e)
+        {
+            if ((nudPrice.Text == "") || (cboBuyers.Text == "") || (cboProperties.Text == ""))
+            {
+                MessageBox.Show("Please fill in all fields correctly", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+            {
+                try
+                {
+                    DataRow newOffer = DC.dtOffer.NewRow();
+                    newOffer["buyerID"] = aBuyerID;
+                    newOffer["propertyID"] = aPropertyID;
+                    newOffer["offerAmount"] = nudPrice.Value;
+                    newOffer["status"] = "Pending";
+                    newOffer["offerDate"] = DateTime.Today;
+                    DC.dtOffer.Rows.Add(newOffer);
+                    DC.UpdateOffer();
+                    MessageBox.Show("Offer added successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (System.Data.ConstraintException)
+                {
+
+                }
+                finally
+                {
+                    object[] keys = new object[2];   // Create an array for the key values to find.
+                    keys[0] = aBuyerID; // Set the values of the keys to find.
+                    keys[1] = aPropertyID; // Set the values of the keys to find.
+                    DataRow updateOfferRow = DC.dtOffer.Rows.Find(keys);
+                    updateOfferRow["offerAmount"] = nudPrice.Value;
+                    updateOfferRow["offerDate"] = DateTime.Today;
+                    if (MessageBox.Show("The buyer already have an offer on this property. Do you want to update the offer amount?", "Warning", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        DC.UpdateOffer();
+                        MessageBox.Show("The offer updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                ClearFields();
+                LoadFields();
+            }
+        }
+         private void cboBuyers_SelectedIndexChanged(object sender, EventArgs e)
         {
             string aRow = cboBuyers.SelectedItem.ToString();
             string[] subs = aRow.Split(' ');
@@ -106,15 +124,45 @@ namespace KaingaRealEstate
             txtFirstName.Text = drBuyer["firstName"].ToString();
             txtEmailAddress.Text = drBuyer["emailAddress"].ToString();
             txtPhoneNumber.Text = drBuyer["phoneNumber"].ToString();
-            LoadFields();
         }
 
-        private void btnReturn_Click(object sender, EventArgs e)
+        private void lblBuyers_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            frmMenu.Show();
-            ClearFields();
 
+        }
+
+        private void lblLastName_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblFirstName_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblEmailAddress_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblPhoneNumber_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblProperties_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblDescription_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblStreetAddress_Click(object sender, EventArgs e)
+        {
 
         }
 
@@ -123,13 +171,14 @@ namespace KaingaRealEstate
             string aRow = cboProperties.SelectedItem.ToString();
             string[] subs = aRow.Split(' ');
             aPropertyID = Convert.ToInt32(subs[0]);
-            cmProperty.Position = DC.buyerView.Find(aPropertyID);
-            DataRow drProperty = DC.dtBuyer.Rows[cmProperty.Position];
+            cmProperty.Position = DC.propertyView.Find(aPropertyID);
+            DataRow drProperty = DC.dtProperty.Rows[cmProperty.Position];
             txtPropertyID.Text = drProperty["propertyID"].ToString();
             txtDescription.Text = drProperty["propertyDescription"].ToString();
             txtStreetAddress.Text = drProperty["streetAddress"].ToString();
-            LoadFields();
-            
+            double amount = Convert.ToDouble(drProperty["price"]);
+            string aPrice = $"{amount:C2}";
+            txtPrice.Text = aPrice;
         }
     }
 }

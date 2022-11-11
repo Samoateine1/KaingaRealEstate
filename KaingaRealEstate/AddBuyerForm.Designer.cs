@@ -51,43 +51,58 @@ namespace KaingaRealEstate
             this.txtSuburb = new System.Windows.Forms.TextBox();
             this.txtCity = new System.Windows.Forms.TextBox();
             this.txtEmailAddress = new System.Windows.Forms.TextBox();
-            this.txtPhoneNumebr = new System.Windows.Forms.TextBox();
+            this.txtPhoneNumber = new System.Windows.Forms.TextBox();
             this.cboCreditStatus = new System.Windows.Forms.ComboBox();
             this.cboMortgageStatus = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnAddBuyer
             // 
-            this.btnAddBuyer.Location = new System.Drawing.Point(243, 710);
+            this.btnAddBuyer.Location = new System.Drawing.Point(253, 521);
             this.btnAddBuyer.Name = "btnAddBuyer";
             this.btnAddBuyer.Size = new System.Drawing.Size(129, 38);
             this.btnAddBuyer.TabIndex = 1;
             this.btnAddBuyer.Text = "Add Suburb";
             this.btnAddBuyer.UseVisualStyleBackColor = true;
+            this.btnAddBuyer.Click += new System.EventHandler(this.btnAddBuyer_Click);
             // 
             // btnReturn
             // 
-            this.btnReturn.Location = new System.Drawing.Point(609, 710);
+            this.btnReturn.Location = new System.Drawing.Point(514, 521);
             this.btnReturn.Name = "btnReturn";
             this.btnReturn.Size = new System.Drawing.Size(107, 38);
             this.btnReturn.TabIndex = 2;
             this.btnReturn.Text = "Return";
             this.btnReturn.UseVisualStyleBackColor = true;
+            this.btnReturn.Click += new System.EventHandler(this.btnReturn_Click);
             // 
             // cboAgents
             // 
             this.cboAgents.FormattingEnabled = true;
-            this.cboAgents.Location = new System.Drawing.Point(304, 507);
+            this.cboAgents.Location = new System.Drawing.Point(304, 359);
             this.cboAgents.Name = "cboAgents";
             this.cboAgents.Size = new System.Drawing.Size(240, 32);
             this.cboAgents.TabIndex = 4;
+            this.cboAgents.SelectedIndexChanged += new System.EventHandler(this.cboAgents_SelectedIndexChanged);
             // 
             // lblADDBUYER
             // 
             this.lblADDBUYER.AutoSize = true;
-            this.lblADDBUYER.Location = new System.Drawing.Point(402, 25);
+            this.lblADDBUYER.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblADDBUYER.Location = new System.Drawing.Point(400, 9);
             this.lblADDBUYER.Name = "lblADDBUYER";
-            this.lblADDBUYER.Size = new System.Drawing.Size(106, 24);
+            this.lblADDBUYER.Size = new System.Drawing.Size(165, 37);
             this.lblADDBUYER.TabIndex = 6;
             this.lblADDBUYER.Text = "ADD BUYER";
             // 
@@ -95,17 +110,18 @@ namespace KaingaRealEstate
             // 
             this.lblLastName.AutoSize = true;
             this.lblLastName.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblLastName.Location = new System.Drawing.Point(181, 76);
+            this.lblLastName.Location = new System.Drawing.Point(181, 79);
             this.lblLastName.Name = "lblLastName";
             this.lblLastName.Size = new System.Drawing.Size(102, 24);
             this.lblLastName.TabIndex = 7;
             this.lblLastName.Text = "Last Name:";
             this.lblLastName.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblLastName.Click += new System.EventHandler(this.lblLastName_Click);
             // 
             // lblFirstName
             // 
             this.lblFirstName.AutoSize = true;
-            this.lblFirstName.Location = new System.Drawing.Point(181, 136);
+            this.lblFirstName.Location = new System.Drawing.Point(181, 120);
             this.lblFirstName.Name = "lblFirstName";
             this.lblFirstName.Size = new System.Drawing.Size(105, 24);
             this.lblFirstName.TabIndex = 8;
@@ -131,7 +147,7 @@ namespace KaingaRealEstate
             // lblSuburb
             // 
             this.lblSuburb.AutoSize = true;
-            this.lblSuburb.Location = new System.Drawing.Point(197, 288);
+            this.lblSuburb.Location = new System.Drawing.Point(208, 196);
             this.lblSuburb.Name = "lblSuburb";
             this.lblSuburb.Size = new System.Drawing.Size(75, 24);
             this.lblSuburb.TabIndex = 11;
@@ -141,7 +157,7 @@ namespace KaingaRealEstate
             // lblCity
             // 
             this.lblCity.AutoSize = true;
-            this.lblCity.Location = new System.Drawing.Point(225, 334);
+            this.lblCity.Location = new System.Drawing.Point(236, 231);
             this.lblCity.Name = "lblCity";
             this.lblCity.Size = new System.Drawing.Size(47, 24);
             this.lblCity.TabIndex = 12;
@@ -151,7 +167,7 @@ namespace KaingaRealEstate
             // lblEmailAddress
             // 
             this.lblEmailAddress.AutoSize = true;
-            this.lblEmailAddress.Location = new System.Drawing.Point(144, 397);
+            this.lblEmailAddress.Location = new System.Drawing.Point(150, 277);
             this.lblEmailAddress.Name = "lblEmailAddress";
             this.lblEmailAddress.Size = new System.Drawing.Size(133, 24);
             this.lblEmailAddress.TabIndex = 13;
@@ -161,7 +177,7 @@ namespace KaingaRealEstate
             // lblPhoneNumber
             // 
             this.lblPhoneNumber.AutoSize = true;
-            this.lblPhoneNumber.Location = new System.Drawing.Point(145, 454);
+            this.lblPhoneNumber.Location = new System.Drawing.Point(150, 318);
             this.lblPhoneNumber.Name = "lblPhoneNumber";
             this.lblPhoneNumber.Size = new System.Drawing.Size(141, 24);
             this.lblPhoneNumber.TabIndex = 14;
@@ -171,7 +187,7 @@ namespace KaingaRealEstate
             // lblStreetAddress
             // 
             this.lblStreetAddress.AutoSize = true;
-            this.lblStreetAddress.Location = new System.Drawing.Point(144, 201);
+            this.lblStreetAddress.Location = new System.Drawing.Point(144, 158);
             this.lblStreetAddress.Name = "lblStreetAddress";
             this.lblStreetAddress.Size = new System.Drawing.Size(142, 24);
             this.lblStreetAddress.TabIndex = 15;
@@ -181,7 +197,7 @@ namespace KaingaRealEstate
             // lblAgents
             // 
             this.lblAgents.AutoSize = true;
-            this.lblAgents.Location = new System.Drawing.Point(200, 510);
+            this.lblAgents.Location = new System.Drawing.Point(211, 367);
             this.lblAgents.Name = "lblAgents";
             this.lblAgents.Size = new System.Drawing.Size(72, 24);
             this.lblAgents.TabIndex = 16;
@@ -191,7 +207,7 @@ namespace KaingaRealEstate
             // lblCreditStatus
             // 
             this.lblCreditStatus.AutoSize = true;
-            this.lblCreditStatus.Location = new System.Drawing.Point(154, 570);
+            this.lblCreditStatus.Location = new System.Drawing.Point(160, 405);
             this.lblCreditStatus.Name = "lblCreditStatus";
             this.lblCreditStatus.Size = new System.Drawing.Size(123, 24);
             this.lblCreditStatus.TabIndex = 17;
@@ -201,7 +217,7 @@ namespace KaingaRealEstate
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(125, 619);
+            this.lblStatus.Location = new System.Drawing.Point(139, 443);
             this.lblStatus.Name = "lblStatus";
             this.lblStatus.Size = new System.Drawing.Size(152, 24);
             this.lblStatus.TabIndex = 18;
@@ -210,93 +226,234 @@ namespace KaingaRealEstate
             // 
             // txtFirstName
             // 
-            this.txtFirstName.Location = new System.Drawing.Point(304, 133);
+            this.txtFirstName.Location = new System.Drawing.Point(304, 117);
             this.txtFirstName.MaxLength = 25;
             this.txtFirstName.Name = "txtFirstName";
-            this.txtFirstName.Size = new System.Drawing.Size(191, 32);
+            this.txtFirstName.Size = new System.Drawing.Size(261, 32);
             this.txtFirstName.TabIndex = 19;
             // 
             // txtStreetAddress
             // 
-            this.txtStreetAddress.Location = new System.Drawing.Point(304, 198);
+            this.txtStreetAddress.Location = new System.Drawing.Point(304, 155);
             this.txtStreetAddress.MaxLength = 50;
-            this.txtStreetAddress.Multiline = true;
             this.txtStreetAddress.Name = "txtStreetAddress";
-            this.txtStreetAddress.Size = new System.Drawing.Size(317, 62);
+            this.txtStreetAddress.Size = new System.Drawing.Size(456, 32);
             this.txtStreetAddress.TabIndex = 20;
             // 
             // txtLastName
             // 
-            this.txtLastName.Location = new System.Drawing.Point(304, 76);
+            this.txtLastName.Location = new System.Drawing.Point(304, 79);
             this.txtLastName.MaxLength = 25;
             this.txtLastName.Name = "txtLastName";
-            this.txtLastName.Size = new System.Drawing.Size(191, 32);
+            this.txtLastName.Size = new System.Drawing.Size(261, 32);
             this.txtLastName.TabIndex = 21;
             // 
             // txtSuburb
             // 
-            this.txtSuburb.Location = new System.Drawing.Point(304, 280);
+            this.txtSuburb.Location = new System.Drawing.Point(304, 193);
             this.txtSuburb.MaxLength = 20;
             this.txtSuburb.Name = "txtSuburb";
-            this.txtSuburb.Size = new System.Drawing.Size(121, 32);
+            this.txtSuburb.Size = new System.Drawing.Size(176, 32);
             this.txtSuburb.TabIndex = 22;
             // 
             // txtCity
             // 
-            this.txtCity.Location = new System.Drawing.Point(304, 326);
+            this.txtCity.Location = new System.Drawing.Point(304, 231);
             this.txtCity.MaxLength = 20;
             this.txtCity.Name = "txtCity";
-            this.txtCity.Size = new System.Drawing.Size(121, 32);
+            this.txtCity.Size = new System.Drawing.Size(176, 32);
             this.txtCity.TabIndex = 23;
             // 
             // txtEmailAddress
             // 
-            this.txtEmailAddress.Location = new System.Drawing.Point(304, 389);
+            this.txtEmailAddress.Location = new System.Drawing.Point(304, 277);
             this.txtEmailAddress.MaxLength = 30;
             this.txtEmailAddress.Name = "txtEmailAddress";
-            this.txtEmailAddress.Size = new System.Drawing.Size(288, 32);
+            this.txtEmailAddress.Size = new System.Drawing.Size(357, 32);
             this.txtEmailAddress.TabIndex = 25;
             // 
-            // txtPhoneNumebr
+            // txtPhoneNumber
             // 
-            this.txtPhoneNumebr.Location = new System.Drawing.Point(304, 451);
-            this.txtPhoneNumebr.MaxLength = 10;
-            this.txtPhoneNumebr.Name = "txtPhoneNumebr";
-            this.txtPhoneNumebr.Size = new System.Drawing.Size(100, 32);
-            this.txtPhoneNumebr.TabIndex = 26;
+            this.txtPhoneNumber.Location = new System.Drawing.Point(304, 315);
+            this.txtPhoneNumber.MaxLength = 10;
+            this.txtPhoneNumber.Name = "txtPhoneNumber";
+            this.txtPhoneNumber.Size = new System.Drawing.Size(100, 32);
+            this.txtPhoneNumber.TabIndex = 26;
             // 
             // cboCreditStatus
             // 
             this.cboCreditStatus.FormattingEnabled = true;
             this.cboCreditStatus.Items.AddRange(new object[] {
-            "confirmed",
-            "unconfirmed"});
-            this.cboCreditStatus.Location = new System.Drawing.Point(304, 562);
+            "valid",
+            "invalid"});
+            this.cboCreditStatus.Location = new System.Drawing.Point(304, 402);
             this.cboCreditStatus.MaxLength = 7;
             this.cboCreditStatus.Name = "cboCreditStatus";
-            this.cboCreditStatus.Size = new System.Drawing.Size(121, 32);
+            this.cboCreditStatus.Size = new System.Drawing.Size(100, 32);
             this.cboCreditStatus.TabIndex = 30;
             // 
             // cboMortgageStatus
             // 
             this.cboMortgageStatus.FormattingEnabled = true;
             this.cboMortgageStatus.Items.AddRange(new object[] {
-            "Valid",
-            "Invalid"});
-            this.cboMortgageStatus.Location = new System.Drawing.Point(304, 619);
+            "confirmed",
+            "unconfirmed"});
+            this.cboMortgageStatus.Location = new System.Drawing.Point(304, 440);
             this.cboMortgageStatus.MaxLength = 11;
             this.cboMortgageStatus.Name = "cboMortgageStatus";
-            this.cboMortgageStatus.Size = new System.Drawing.Size(121, 32);
+            this.cboMortgageStatus.Size = new System.Drawing.Size(109, 32);
             this.cboMortgageStatus.TabIndex = 31;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.label1.Location = new System.Drawing.Point(368, 46);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(275, 24);
+            this.label1.TabIndex = 32;
+            this.label1.Text = "*All Field must not be left blank.";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.label2.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label2.Location = new System.Drawing.Point(278, 125);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(20, 24);
+            this.label2.TabIndex = 33;
+            this.label2.Text = "*";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.label3.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label3.Location = new System.Drawing.Point(280, 323);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(20, 24);
+            this.label3.TabIndex = 34;
+            this.label3.Text = "*";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.label6.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label6.Location = new System.Drawing.Point(280, 285);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(20, 24);
+            this.label6.TabIndex = 35;
+            this.label6.Text = "*";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.label7.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label7.Location = new System.Drawing.Point(280, 239);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(20, 24);
+            this.label7.TabIndex = 36;
+            this.label7.Text = "*";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.label8.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label8.Location = new System.Drawing.Point(280, 201);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(20, 24);
+            this.label8.TabIndex = 37;
+            this.label8.Text = "*";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.label9.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label9.Location = new System.Drawing.Point(280, 163);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(20, 24);
+            this.label9.TabIndex = 38;
+            this.label9.Text = "*";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.label10.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label10.Location = new System.Drawing.Point(278, 82);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(20, 24);
+            this.label10.TabIndex = 39;
+            this.label10.Text = "*";
+            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.label11.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label11.Location = new System.Drawing.Point(280, 448);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(20, 24);
+            this.label11.TabIndex = 40;
+            this.label11.Text = "*";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.label12.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label12.Location = new System.Drawing.Point(280, 410);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(20, 24);
+            this.label12.TabIndex = 41;
+            this.label12.Text = "*";
+            this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.label13.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.label13.Location = new System.Drawing.Point(280, 367);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(20, 24);
+            this.label13.TabIndex = 42;
+            this.label13.Text = "*";
+            this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // AddBuyerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1000, 775);
+            this.ClientSize = new System.Drawing.Size(901, 579);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.cboMortgageStatus);
             this.Controls.Add(this.cboCreditStatus);
-            this.Controls.Add(this.txtPhoneNumebr);
+            this.Controls.Add(this.txtPhoneNumber);
             this.Controls.Add(this.txtEmailAddress);
             this.Controls.Add(this.txtCity);
             this.Controls.Add(this.txtSuburb);
@@ -352,8 +509,19 @@ namespace KaingaRealEstate
         private System.Windows.Forms.TextBox txtSuburb;
         private System.Windows.Forms.TextBox txtCity;
         private System.Windows.Forms.TextBox txtEmailAddress;
-        private System.Windows.Forms.TextBox txtPhoneNumebr;
+        private System.Windows.Forms.TextBox txtPhoneNumber;
         private System.Windows.Forms.ComboBox cboCreditStatus;
         private System.Windows.Forms.ComboBox cboMortgageStatus;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
     }
 }
